@@ -514,7 +514,7 @@ trait TraitS1210
                         );
                     }
                     $infocomp->appendChild($infodep);
-                }                
+                }
             }
             if (!empty($comp->infoircr)) {
                 foreach ($comp->infoircr as $rc) {
@@ -719,48 +719,6 @@ trait TraitS1210
                     }
                     $infocomp->appendChild($ircr);
                 }
-                if (!empty($comp->plansaude)) {
-                    foreach ($comp->plansaude as $sau) {
-                        $psau = $this->dom->createElement("planSaude");
-                        $this->dom->addChild(
-                            $psau,
-                            "cnpjOper",
-                            $sau->cnpjoper,
-                            true
-                        );
-                        $this->dom->addChild(
-                            $psau,
-                            "regANS",
-                            $sau->regans ?? null,
-                            false
-                        );
-                        $this->dom->addChild(
-                            $psau,
-                            "vlrSaudeTit",
-                            $sau->vlrsaudetit,
-                            true
-                        );
-                        if (!empty($sau->infodepsau)) {
-                            foreach ($sau->infodepsau as $dep) {
-                                $idep = $this->dom->createElement("infoDepSau");
-                                $this->dom->addChild(
-                                    $idep,
-                                    "cpfDep",
-                                    $dep->cpfdep,
-                                    true
-                                );
-                                $this->dom->addChild(
-                                    $idep,
-                                    "vlrSaudeDep",
-                                    $dep->vlrsaudedep,
-                                    true
-                                );
-                                $psau->appendChild($idep);
-                            }
-                        }
-                        $infocomp->appendChild($psau);
-                    }
-                }
                 if (!empty($comp->inforeembmed)) {
                     foreach ($comp->inforeembmed as $ree) {
                         $iree = $this->dom->createElement("infoReembMed");
@@ -857,6 +815,48 @@ trait TraitS1210
 
                         $infocomp->appendChild($iree);
                     }
+                }
+            }
+            if (!empty($comp->plansaude)) {
+                foreach ($comp->plansaude as $sau) {
+                    $psau = $this->dom->createElement("planSaude");
+                    $this->dom->addChild(
+                        $psau,
+                        "cnpjOper",
+                        $sau->cnpjoper,
+                        true
+                    );
+                    $this->dom->addChild(
+                        $psau,
+                        "regANS",
+                        $sau->regans ?? null,
+                        false
+                    );
+                    $this->dom->addChild(
+                        $psau,
+                        "vlrSaudeTit",
+                        $sau->vlrsaudetit,
+                        true
+                    );
+                    if (!empty($sau->infodepsau)) {
+                        foreach ($sau->infodepsau as $dep) {
+                            $idep = $this->dom->createElement("infoDepSau");
+                            $this->dom->addChild(
+                                $idep,
+                                "cpfDep",
+                                $dep->cpfdep,
+                                true
+                            );
+                            $this->dom->addChild(
+                                $idep,
+                                "vlrSaudeDep",
+                                $dep->vlrsaudedep,
+                                true
+                            );
+                            $psau->appendChild($idep);
+                        }
+                    }
+                    $infocomp->appendChild($psau);
                 }
             }
             $ideBenef->appendChild($infocomp);
@@ -1042,7 +1042,7 @@ trait TraitS1210
             $ideBenef->appendChild($infoPgto);
         }
         if (!empty($this->std->infoircomplem)) {
-            foreach($this->std->infoircomplem as $comp) {
+            foreach ($this->std->infoircomplem as $comp) {
                 $infocomp = $this->dom->createElement("infoIRComplem");
                 //$comp = $this->std->infoircomplem;
                 $this->dom->addChild(
@@ -1051,7 +1051,7 @@ trait TraitS1210
                     $comp->dtlaudo ?? null,
                     false
                 );
-                if(isset($comp->perant)){
+                if (isset($comp->perant)) {
                     $perAnt = $this->dom->createElement("perAnt");
                     $this->dom->addChild(
                         $perAnt,
@@ -1100,7 +1100,7 @@ trait TraitS1210
                             $dep->tpdep ?? null,
                             false
                         );
-                        if (!empty($dep->tpdep) && $dep->tpdep === '99') {
+                        if (isset($dep->tpdep) and $dep->tpdep === '99') {
                             $this->dom->addChild(
                                 $infodep,
                                 "descrDep",
@@ -1183,40 +1183,38 @@ trait TraitS1210
                                     $prev->cnpjentidpc,
                                     true
                                 );
-                                if(!isset($prev->vlrdedpc13)){
+                                if (!isset($prev->vlrdedpc13)) {
                                     $this->dom->addChild(
                                         $pc,
                                         "vlrDedPC",
                                         $prev->vlrdedpc,
                                         true
                                     );
-                                }
-                                else{
+                                } else {
                                     $this->dom->addChild(
                                         $pc,
                                         "vlrDedPC13",
                                         $prev->vlrdedpc13,
                                         true
                                     );
-                                }                                
-                                if($prev->tpprev == 3){
-                                    if(!isset($prev->vlrpatrocfunp13)){
+                                }
+                                if ($prev->tpprev == 3) {
+                                    if (!isset($prev->vlrpatrocfunp13)) {
                                         $this->dom->addChild(
                                             $pc,
                                             "vlrPatrocFunp",
                                             $prev->vlrpatrocfunp ?? null,
                                             false
                                         );
-                                    }
-                                    else{
+                                    } else {
                                         $this->dom->addChild(
                                             $pc,
                                             "vlrPatrocFunp13",
                                             $prev->vlrpatrocfunp13 ?? null,
                                             false
                                         );
-                                    }                     
-                                }                                
+                                    }
+                                }
                                 $ircr->appendChild($pc);
                             }
                         }
@@ -1337,7 +1335,7 @@ trait TraitS1210
                         $infocomp->appendChild($ircr);
                     }
                 }
-                
+
                 if (!empty($comp->plansaude)) {
                     foreach ($comp->plansaude as $sau) {
                         $psau = $this->dom->createElement("planSaude");
