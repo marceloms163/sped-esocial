@@ -122,7 +122,7 @@ abstract class Factory
     public function __construct(
         $config,
         stdClass $std,
-        Certificate $certificate = null,
+        ?Certificate $certificate = null,
         $date = null
     ) {
         //set properties from config

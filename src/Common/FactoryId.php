@@ -18,7 +18,7 @@ class FactoryId
     public static function build(
         $tpInsc,
         $nrInsc,
-        DateTime $date = null,
+        ?DateTime $date = null,
         $sequential = null
     ) {
         if (empty($sequential)) {
