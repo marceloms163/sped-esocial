@@ -63,7 +63,7 @@ class ParamsStandardize
      * @param  \stdClass $default
      * @return \stdClass
      */
-    protected function get(\stdClass $obj, $prop, \stdClass $default = null)
+    protected function get(\stdClass $obj, $prop, ?\stdClass $default = null)
     {
         return isset($obj->{$prop}) ? $obj->{$prop} : $default;
     }
