@@ -43,7 +43,7 @@ class EvtFechaEvPer extends Factory implements FactoryInterface
      * @var array
      */
     protected $parameters = [];
-       
+
     //Trait que contêm os métodos construtores das versões diferentes ainda ativas
     //quando uma versão for desativada o metodo correspondente pode e deve ser removido
     use Traits\TraitS1299;
@@ -59,7 +59,7 @@ class EvtFechaEvPer extends Factory implements FactoryInterface
     public function __construct(
         $config,
         stdClass $std,
-        ??Certificate $certificate = null,
+        ?Certificate $certificate = null,
         $date = ''
     ) {
         parent::__construct($config, $std, $certificate, $date);
